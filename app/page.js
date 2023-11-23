@@ -1,17 +1,13 @@
 
-import React from 'react';
-
 const getData = async ()=>{
-  const apiUrl = `http://localhost:3000/api/getData`
+  const apiUrl = `http://localhost:3000/api/getData-lib`
   const response = await fetch(apiUrl)
   const res = await response.json()
-  // console.log(res)
   return res
 }
 
-const Page = async () => {
+const Page = async ({params}) => {
   const {products} = await getData()
-  // console.log(products)
 
   return (
     <div>
@@ -22,8 +18,8 @@ const Page = async () => {
       </div>
 
       {products.map(p=>(
-        <div>
-          <div>{p.productsname}</div>
+        <div key={p.id}>
+          <div>{p.productsname} </div>
           <div>
             <img src={''} />
           </div>
